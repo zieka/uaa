@@ -224,6 +224,7 @@ public class LoginInfoEndpoint {
 
         model.addAttribute("savedAccounts", savedAccounts);
 
+        logger.info("BRUCE : 0");
         return login(model, principal, Arrays.asList(PASSCODE, MFA_CODE), false, request);
     }
 
@@ -260,19 +261,24 @@ public class LoginInfoEndpoint {
     }
 
     private String login(Model model, Principal principal, List<String> excludedPrompts, boolean jsonResponse, HttpServletRequest request) {
+        logger.info("BRUCE : 1");
         if (principal instanceof UaaAuthentication && ((UaaAuthentication) principal).isAuthenticated()) {
+            logger.info("BRUCE : 2");
             return "redirect:/home";
         }
 
+        logger.info("BRUCE : 3");
         HttpSession session = request != null ? request.getSession(false) : null;
         List<String> allowedIdentityProviderKeys = null;
         String clientName = null;
         Map<String, Object> clientInfo = getClientInfo(session);
         if (clientInfo != null) {
+            logger.info("BRUCE : 4");
             allowedIdentityProviderKeys = (List<String>) clientInfo.get(ClientConstants.ALLOWED_PROVIDERS);
             clientName = (String) clientInfo.get(ClientConstants.CLIENT_NAME);
         }
 
+        logger.info("BRUCE : 5");
         Map<String, SamlIdentityProviderDefinition> samlIdentityProviders =
                 getSamlIdentityProviderDefinitions(allowedIdentityProviderKeys);
         Map<String, AbstractExternalOAuthIdentityProviderDefinition> oauthIdentityProviders =
@@ -287,29 +293,37 @@ public class LoginInfoEndpoint {
         boolean returnLoginPrompts = true;
         IdentityProvider ldapIdentityProvider = null;
         try {
+            logger.info("BRUCE : 6");
             ldapIdentityProvider = providerProvisioning.retrieveByOrigin(
                     OriginKeys.LDAP, IdentityZoneHolder.get().getId()
             );
         } catch (EmptyResultDataAccessException ignored) {
+            logger.info("BRUCE : 7");
         }
+        logger.info("BRUCE : 8");
         IdentityProvider uaaIdentityProvider =
                 providerProvisioning.retrieveByOriginIgnoreActiveFlag(OriginKeys.UAA, IdentityZoneHolder.get().getId());
         // ldap and uaa disabled removes username/password input boxes
         if (!uaaIdentityProvider.isActive()) {
+            logger.info("BRUCE : 9");
             if (ldapIdentityProvider == null || !ldapIdentityProvider.isActive()) {
+                logger.info("BRUCE : 10");
                 fieldUsernameShow = false;
                 returnLoginPrompts = false;
             }
         }
 
+        logger.info("BRUCE : 11");
         // ldap or uaa not part of allowedIdentityProviderKeys
         if (allowedIdentityProviderKeys != null &&
                 !allowedIdentityProviderKeys.contains(OriginKeys.LDAP) &&
                 !allowedIdentityProviderKeys.contains(OriginKeys.UAA) &&
                 !allowedIdentityProviderKeys.contains(OriginKeys.KEYSTONE)) {
+            logger.info("BRUCE : 12");
             fieldUsernameShow = false;
         }
 
+        logger.info("BRUCE : 13");
         Map.Entry<String, AbstractIdentityProviderDefinition> idpForRedirect;
         idpForRedirect = evaluateLoginHint(model, session, samlIdentityProviders,
                 oauthIdentityProviders, allIdentityProviders, allowedIdentityProviderKeys, request);
@@ -320,38 +334,57 @@ public class LoginInfoEndpoint {
 
         idpForRedirect = evaluateIdpDiscovery(model, samlIdentityProviders, oauthIdentityProviders,
                 allIdentityProviders, allowedIdentityProviderKeys, idpForRedirect, discoveryEnabled, discoveryPerformed, defaultIdentityProviderName);
+
+        logger.info("BRUCE : 13.5");
+        logger.info("BRUCE : 13.5 " + (idpForRedirect == null ? "null" : "not null"));
+        logger.info("BRUCE : 13.5 " + (!jsonResponse ? "null" : "not null"));
+        logger.info("BRUCE : 13.5 " + (!fieldUsernameShow ? "null" : "not null"));
+        logger.info("BRUCE : 13.5 " + (allIdentityProviders.size()));
+
         if (idpForRedirect == null && !jsonResponse && !fieldUsernameShow && allIdentityProviders.size() == 1) {
+            logger.info("BRUCE : 14"); // good case
             idpForRedirect = allIdentityProviders.entrySet().stream().findAny().get();
         }
+        logger.info("BRUCE : 15"); // fail case
         if (idpForRedirect != null) {
+            logger.info("BRUCE : 16");
             String externalRedirect = redirectToExternalProvider(
                     idpForRedirect.getValue(), idpForRedirect.getKey(), request
             );
             if (externalRedirect != null && !jsonResponse) {
+                logger.info("BRUCE : 17");
                 logger.debug("Following external redirect : " + externalRedirect);
                 return externalRedirect;
             }
         }
 
+        logger.info("BRUCE : 18");
         boolean linkCreateAccountShow = fieldUsernameShow;
         if (fieldUsernameShow && (allowedIdentityProviderKeys != null) && (!discoveryEnabled || discoveryPerformed)) {
+            logger.info("BRUCE : 19");
             if (!allowedIdentityProviderKeys.contains(OriginKeys.UAA)) {
+                logger.info("BRUCE : 20");
                 linkCreateAccountShow = false;
                 model.addAttribute("login_hint", new UaaLoginHint(OriginKeys.LDAP).toString());
             } else if (!allowedIdentityProviderKeys.contains(OriginKeys.LDAP)) {
+                logger.info("BRUCE : 21");
                 model.addAttribute("login_hint", new UaaLoginHint(OriginKeys.UAA).toString());
             }
         }
 
+        logger.info("BRUCE : 22");
         String zonifiedEntityID = getZonifiedEntityId();
         Map links = getLinksInfo();
         if (jsonResponse) {
+            logger.info("BRUCE : 23");
             setJsonInfo(model, samlIdentityProviders, zonifiedEntityID, links);
         } else {
+            logger.info("BRUCE : 24");
             updateLoginPageModel(model, request, clientName, samlIdentityProviders, oauthIdentityProviders,
                     fieldUsernameShow, linkCreateAccountShow);
         }
 
+        logger.info("BRUCE : 25");
         model.addAttribute(LINKS, links);
         setCommitInfo(model);
         model.addAttribute(ZONE_NAME, IdentityZoneHolder.get().getName());
@@ -364,8 +397,11 @@ public class LoginInfoEndpoint {
                 excludedPrompts, returnLoginPrompts);
 
         if (principal == null) {
+            logger.info("BRUCE : 26");
             return getUnauthenticatedRedirect(model, request, discoveryEnabled, discoveryPerformed);
         }
+
+        logger.info("BRUCE : 27");
         return "home";
     }
 
@@ -465,18 +501,23 @@ public class LoginInfoEndpoint {
             String defaultIdentityProviderName
     ) {
         if (idpForRedirect == null && (discoveryPerformed || !discoveryEnabled) && defaultIdentityProviderName != null && !model.containsAttribute("login_hint")) { //Default set, no login_hint given, discovery disabled or performed
+            logger.info("PETER : 1");
             if (!OriginKeys.UAA.equals(defaultIdentityProviderName) && !OriginKeys.LDAP.equals(defaultIdentityProviderName)) {
+                logger.info("PETER : 2");
                 if (allIdentityProviders.containsKey(defaultIdentityProviderName)) {
+                    logger.info("PETER : 3");
                     idpForRedirect =
                             allIdentityProviders.entrySet().stream().filter(entry -> defaultIdentityProviderName.equals(entry.getKey())).findAny().orElse(null);
                 }
             } else if (allowedIdentityProviderKeys == null || allowedIdentityProviderKeys.contains(defaultIdentityProviderName)) {
+                logger.info("PETER : 4");
                 UaaLoginHint loginHint = new UaaLoginHint(defaultIdentityProviderName);
                 model.addAttribute("login_hint", loginHint.toString());
                 samlIdentityProviders.clear();
                 oauthIdentityProviders.clear();
             }
         }
+        logger.info("PETER : 5");
         return idpForRedirect;
     }
 

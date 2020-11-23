@@ -45,6 +45,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
@@ -148,6 +150,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext
 @ExtendWith(PollutionPreventionExtension.class)
 public class LoginMockMvcTests {
+
+    private static Logger logger = LoggerFactory.getLogger(LoginInfoEndpoint.class);
 
     private WebApplicationContext webApplicationContext;
 
@@ -1406,6 +1410,7 @@ public class LoginMockMvcTests {
     void ExternalOAuthRedirectOnlyOneProviderWithDiscoveryUrl(
             @Autowired JdbcIdentityProviderProvisioning jdbcIdentityProviderProvisioning
     ) throws Exception {
+        logger.info("==============test starts===========");
         final String zoneAdminClientId = "admin";
         BaseClientDetails zoneAdminClient = new BaseClientDetails(zoneAdminClientId, null, "openid", "client_credentials,authorization_code", "clients.admin,scim.read,scim.write", "http://test.redirect.com");
         zoneAdminClient.setClientSecret("admin-secret");
@@ -1438,6 +1443,7 @@ public class LoginMockMvcTests {
         assertThat(queryParams, hasKey("nonce"));
 
         IdentityZoneHolder.clear();
+        logger.info("==============test ends===========");
     }
 
     @Test

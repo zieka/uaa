@@ -110,7 +110,10 @@ public class JdbcIdentityProviderProvisioning implements IdentityProviderProvisi
         } catch (Exception e) {
             logger.info("======STEVE: Failing to creating IDP because some exception: " + identityProvider.toString());
         }
-        return retrieve(id, zoneId);
+
+        IdentityProvider retrievedIDP = retrieve(id, zoneId);
+        logger.info("======STEVE: Retrieved IDP: " + retrievedIDP.toString());
+        return retrievedIDP;
     }
 
     @Override

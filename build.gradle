@@ -85,7 +85,7 @@ subprojects {
     targetCompatibility = 1.11
 
     test {
-        maxParallelForks = 1
+        maxParallelForks = 6
         useJUnitPlatform()
         jvmArgs += ["-Xmx1024m", "-XX:+StartAttachListener", "-XX:+HeapDumpOnOutOfMemoryError", "-XX:HeapDumpPath=/var/log/uaa-tests.hprof"]
 

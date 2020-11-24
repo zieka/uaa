@@ -40,6 +40,7 @@ import org.cloudfoundry.identity.uaa.zone.IdentityZoneProvisioning;
 import org.cloudfoundry.identity.uaa.zone.InvalidIdentityZoneDetailsException;
 import org.cloudfoundry.identity.uaa.zone.Links;
 import org.cloudfoundry.identity.uaa.zone.MultitenancyFixture;
+import org.junit.Ignore;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -146,6 +147,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DefaultTestContext
 @DirtiesContext
+@Ignore
 @ExtendWith(PollutionPreventionExtension.class)
 public class LoginMockMvcTests {
 

@@ -107,6 +107,8 @@ public class JdbcIdentityProviderProvisioning implements IdentityProviderProvisi
         } catch (DuplicateKeyException e) {
             logger.info("======STEVE: Failing to creating IDP because already exist: " + identityProvider.toString());
             throw new IdpAlreadyExistsException(e.getMostSpecificCause().getMessage());
+        } catch (Exception e) {
+            logger.info("======STEVE: Failing to creating IDP because some exception: " + identityProvider.toString());
         }
         return retrieve(id, zoneId);
     }

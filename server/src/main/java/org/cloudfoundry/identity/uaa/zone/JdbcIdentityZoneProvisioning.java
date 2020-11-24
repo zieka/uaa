@@ -81,6 +81,7 @@ public class JdbcIdentityZoneProvisioning implements IdentityZoneProvisioning, S
 
     @Override
     public IdentityZone create(final IdentityZone identityZone) {
+        logger.info("======STEVE: Creating ID Zone: " + identityZone.toString());
 
         try {
             jdbcTemplate.update(CREATE_IDENTITY_ZONE_SQL, ps -> {
@@ -107,6 +108,7 @@ public class JdbcIdentityZoneProvisioning implements IdentityZoneProvisioning, S
 
     @Override
     public IdentityZone update(final IdentityZone identityZone) {
+        logger.info("======STEVE: update ID Zone: " + identityZone.toString());
 
         try {
             jdbcTemplate.update(UPDATE_IDENTITY_ZONE_SQL, ps -> {
@@ -132,6 +134,7 @@ public class JdbcIdentityZoneProvisioning implements IdentityZoneProvisioning, S
 
     @Override
     public int deleteByIdentityZone(String zoneId) {
+        logger.info("======STEVE: deleteByIdentityZone ID Zone: " + zoneId);
         return jdbcTemplate.update(DELETE_IDENTITY_ZONE_SQL, zoneId);
     }
 

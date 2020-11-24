@@ -89,6 +89,7 @@ public class JdbcIdentityProviderProvisioning implements IdentityProviderProvisi
     public IdentityProvider create(final IdentityProvider identityProvider, String zoneId) {
         validate(identityProvider);
         final String id = UUID.randomUUID().toString();
+        logger.info("======STEVE: Creating IDP: " + identityProvider.toString());
         try {
             jdbcTemplate.update(CREATE_IDENTITY_PROVIDER_SQL, ps -> {
                 int pos = 1;
@@ -104,6 +105,7 @@ public class JdbcIdentityProviderProvisioning implements IdentityProviderProvisi
                 ps.setBoolean(pos, identityProvider.isActive());
             });
         } catch (DuplicateKeyException e) {
+            logger.info("======STEVE: Failing to creating IDP because already exist: " + identityProvider.toString());
             throw new IdpAlreadyExistsException(e.getMostSpecificCause().getMessage());
         }
         return retrieve(id, zoneId);
@@ -144,11 +146,13 @@ public class JdbcIdentityProviderProvisioning implements IdentityProviderProvisi
 
     @Override
     public int deleteByIdentityZone(String zoneId) {
+        logger.info("======STEVE: deleteByIdentityZone: " + zoneId);
         return jdbcTemplate.update(DELETE_IDENTITY_PROVIDER_BY_ZONE_SQL, zoneId);
     }
 
     @Override
     public int deleteByOrigin(String origin, String zoneId) {
+        logger.info("======STEVE: deleteByOrigin: " + origin + zoneId);
         return jdbcTemplate.update(DELETE_IDENTITY_PROVIDER_BY_ORIGIN_SQL, zoneId, origin);
     }
 

@@ -1429,6 +1429,9 @@ public class LoginMockMvcTests {
         uaaIdentityProvider.setActive(false);
         jdbcIdentityProviderProvisioning.update(uaaIdentityProvider, uaaIdentityProvider.getIdentityZoneId());
 
+        List<IdentityProvider> allIdentityProviders = jdbcIdentityProviderProvisioning.retrieveAll(false, IdentityZoneHolder.getCurrentZoneId());
+        logger.info("==============test allIdentityProviders" + allIdentityProviders.toString());
+
         logger.info("==============test mockMvc.perform starts===========");
         MvcResult mvcResult = mockMvc.perform(get("/login").accept(TEXT_HTML)
                 .servletPath("/login")

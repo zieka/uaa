@@ -75,25 +75,49 @@ public abstract class UaaHttpRequestUtils {
         return httpComponentsClientHttpRequestFactory;
     }
 
+//    protected static HttpClientBuilder getClientBuilder(boolean skipSslValidation, int poolSize, int defaultMaxPerRoute, int maxKeepAlive) {
+//        logger.info("STEVE: getClientBuilder");
+//        HttpClientBuilder builder = HttpClients.custom()
+//            .useSystemProperties()
+//            .setRedirectStrategy(new DefaultRedirectStrategy());
+//        PoolingHttpClientConnectionManager cm;
+//        if (skipSslValidation) {
+//            SSLContext sslContext = getNonValidatingSslContext();
+//            final String[] supportedProtocols = split(System.getProperty("https.protocols"));
+//            final String[] supportedCipherSuites = split(System.getProperty("https.cipherSuites"));
+//            HostnameVerifier hostnameVerifierCopy = new NoopHostnameVerifier();
+//            SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, supportedProtocols, supportedCipherSuites, hostnameVerifierCopy);
+//            Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory> create()
+//                    .register("https", sslSocketFactory)
+//                    .register("http", PlainConnectionSocketFactory.getSocketFactory())
+//                    .build();
+//            cm = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
+//        } else {
+//            cm = new PoolingHttpClientConnectionManager();
+//        }
+//        cm.setMaxTotal(poolSize);
+//        cm.setDefaultMaxPerRoute(defaultMaxPerRoute);
+//        builder.setConnectionManager(cm);
+//
+//        if (maxKeepAlive <= 0) {
+//            builder.setConnectionReuseStrategy(NoConnectionReuseStrategy.INSTANCE);
+//        } else {
+//            builder.setKeepAliveStrategy(new UaaConnectionKeepAliveStrategy(maxKeepAlive));
+//        }
+//
+//        return builder;
+//    }
+
     protected static HttpClientBuilder getClientBuilder(boolean skipSslValidation, int poolSize, int defaultMaxPerRoute, int maxKeepAlive) {
+        logger.info("STEVE: getClientBuilder orginal");
         HttpClientBuilder builder = HttpClients.custom()
-            .useSystemProperties()
-            .setRedirectStrategy(new DefaultRedirectStrategy());
-        PoolingHttpClientConnectionManager cm;
+                .useSystemProperties()
+                .setRedirectStrategy(new DefaultRedirectStrategy());
         if (skipSslValidation) {
-            SSLContext sslContext = getNonValidatingSslContext();
-            final String[] supportedProtocols = split(System.getProperty("https.protocols"));
-            final String[] supportedCipherSuites = split(System.getProperty("https.cipherSuites"));
-            HostnameVerifier hostnameVerifierCopy = new NoopHostnameVerifier();
-            SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, supportedProtocols, supportedCipherSuites, hostnameVerifierCopy);
-            Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory> create()
-                    .register("https", sslSocketFactory)
-                    .register("http", PlainConnectionSocketFactory.getSocketFactory())
-                    .build();
-            cm = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-        } else {
-            cm = new PoolingHttpClientConnectionManager();
+            builder.setSslcontext(getNonValidatingSslContext());
+            builder.setSSLHostnameVerifier(new NoopHostnameVerifier());
         }
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
         cm.setMaxTotal(poolSize);
         cm.setDefaultMaxPerRoute(defaultMaxPerRoute);
         builder.setConnectionManager(cm);

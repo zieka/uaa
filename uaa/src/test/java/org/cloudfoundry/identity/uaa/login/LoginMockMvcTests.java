@@ -1430,7 +1430,7 @@ public class LoginMockMvcTests {
         jdbcIdentityProviderProvisioning.update(uaaIdentityProvider, uaaIdentityProvider.getIdentityZoneId());
 
         List<IdentityProvider> allIdentityProviders = jdbcIdentityProviderProvisioning.retrieveAll(false, IdentityZoneHolder.getCurrentZoneId());
-        logger.info("==============test allIdentityProviders" + allIdentityProviders.toString());
+        logger.info("==============test allIdentityProviders right before mockMvc.perform" + allIdentityProviders.toString());
 
         logger.info("==============test mockMvc.perform starts===========");
         MvcResult mvcResult = mockMvc.perform(get("/login").accept(TEXT_HTML)
@@ -1438,6 +1438,10 @@ public class LoginMockMvcTests {
                 .with(new SetServerNameRequestPostProcessor(identityZone.getSubdomain() + ".localhost")))
                 .andExpect(status().isFound())
                 .andReturn();
+
+        List<IdentityProvider> allIdentityProviders2 = jdbcIdentityProviderProvisioning.retrieveAll(false, IdentityZoneHolder.getCurrentZoneId());
+        logger.info("==============test allIdentityProviders right after mockMvc.perform" + allIdentityProviders2.toString());
+
         String location = mvcResult.getResponse().getHeader("Location");
         Map<String, String> queryParams =
                 UriComponentsBuilder.fromUriString(location).build().getQueryParams().toSingleValueMap();

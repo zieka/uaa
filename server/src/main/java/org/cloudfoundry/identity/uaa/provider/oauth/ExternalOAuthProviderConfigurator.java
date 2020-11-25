@@ -142,6 +142,7 @@ public class ExternalOAuthProviderConfigurator implements IdentityProviderProvis
     public List<IdentityProvider> retrieveAll(boolean activeOnly, String zoneId) {
         final List<String> types = Arrays.asList(OAUTH20, OIDC10);
         List<IdentityProvider> providers = providerProvisioning.retrieveAll(activeOnly, zoneId);
+        LOGGER.info("STEVE: retrieveAll providers:" + providers.toString());
         List<IdentityProvider> overlayedProviders = new ArrayList<>();
         ofNullable(providers).orElse(emptyList()).stream()
                 .filter(p -> types.contains(p.getType()))
@@ -151,6 +152,7 @@ public class ExternalOAuthProviderConfigurator implements IdentityProviderProvis
                             OIDCIdentityProviderDefinition overlayedDefinition = overlay((OIDCIdentityProviderDefinition) p.getConfig());
                             p.setConfig(overlayedDefinition);
                         } catch (Exception e) {
+                            // this happens, resulting in the google IDP not being counted
                             LOGGER.error("Identity provider excluded from login page due to a problem.", e);
                             return;
                         }

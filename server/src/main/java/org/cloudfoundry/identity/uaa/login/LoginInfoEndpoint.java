@@ -283,11 +283,18 @@ public class LoginInfoEndpoint {
                 getSamlIdentityProviderDefinitions(allowedIdentityProviderKeys);
         Map<String, AbstractExternalOAuthIdentityProviderDefinition> oauthIdentityProviders =
                 getOauthIdentityProviderDefinitions(allowedIdentityProviderKeys);
+
+        if (allowedIdentityProviderKeys != null) {
+            logger.info("BRUCE : 5.5 allowedIdentityProviderKeys: " + allowedIdentityProviderKeys.size());
+        }
+        logger.info("BRUCE : 5.5 oauthIdentityProviders: " + oauthIdentityProviders.size());
+        logger.info("BRUCE : 5.5 oauthIdentityProviders.size: " + oauthIdentityProviders.size());
         Map<String, AbstractIdentityProviderDefinition> allIdentityProviders =
                 new HashMap<>() {{
                     putAll(samlIdentityProviders);
                     putAll(oauthIdentityProviders);
                 }};
+        logger.info("BRUCE : 5.5 allIdentityProviders.size: " + allIdentityProviders.size());
 
         boolean fieldUsernameShow = true;
         boolean returnLoginPrompts = true;

@@ -339,11 +339,16 @@ class UaaUrlUtilsTest {
         assertThat(matchingRedirectUri5, equalTo(fallback));
     }
 
-    @Test
-    void findMatchingRedirectUri_questionMarkValidation() {
-        String fallbackRedirectUrl = "http://fallback.to/this";
-        Set<String> allowedRedirectUrlGlobPatterns = Collections.singleton("http://example.com/*");
-        String incomingRedirectUrl = "http://example.com/?param=value";
+    @ParameterizedTest
+    @CsvSource({
+            "http://example.com/*, http://example.com/?param=value",
+            "http://example.com/*, http://example.com/page#1"
+    })
+    void findMatchingRedirectUri_urlParametersShouldResolveInIncomingUrl(
+            String allowedRedirectUrl,
+            String incomingRedirectUrl) {
+        final String fallbackRedirectUrl = "http://fallback.to/this";
+        Set<String> allowedRedirectUrlGlobPatterns = Collections.singleton(allowedRedirectUrl);
 
         assertEquals(incomingRedirectUrl, UaaUrlUtils.findMatchingRedirectUri(
                 allowedRedirectUrlGlobPatterns,
@@ -355,9 +360,13 @@ class UaaUrlUtilsTest {
     @ParameterizedTest
     @CsvSource({
             "http://*.example.com, http://attacker.com?.example.com",
-            "http://*.example.com, http://attacker.com\\.example.com"
+            "http://*.example.com, http://attacker.com\\.example.com",
+            "http://*.example.com, http://attacker.com/.example.com",
+            "http://*.example.com, http://attacker.com#.example.com"
     })
-    void findMatchingRedirectUri_maliciousRedirectUrlShouldResolveInAnExceptionWhenDetectingAttack(String allowedRedirectUrl, String incomingMaliciousRedirectUrl) {
+    void findMatchingRedirectUri_maliciousRedirectUrlShouldResolveInFallbackUrl(
+            String allowedRedirectUrl,
+            String incomingMaliciousRedirectUrl) {
         final String fallbackRedirectUrl = "http://fallback.to/this";
         Set<String> allowedRedirectUrlGlobPatterns = Collections.singleton(allowedRedirectUrl);
 

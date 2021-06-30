@@ -7,6 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -335,6 +337,35 @@ class UaaUrlUtilsTest {
         String fallback = "http://fallback.to/this";
         String matchingRedirectUri5 = UaaUrlUtils.findMatchingRedirectUri(Collections.singleton(pattern3), redirect5, fallback);
         assertThat(matchingRedirectUri5, equalTo(fallback));
+    }
+
+    @Test
+    void findMatchingRedirectUri_questionMarkValidation() {
+        String fallbackRedirectUrl = "http://fallback.to/this";
+        Set<String> allowedRedirectUrlGlobPatterns = Collections.singleton("http://example.com/*");
+        String incomingRedirectUrl = "http://example.com/?param=value";
+
+        assertEquals(incomingRedirectUrl, UaaUrlUtils.findMatchingRedirectUri(
+                allowedRedirectUrlGlobPatterns,
+                incomingRedirectUrl,
+                fallbackRedirectUrl
+        ));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "http://*.example.com, http://attacker.com?.example.com",
+            "http://*.example.com, http://attacker.com\\.example.com"
+    })
+    void findMatchingRedirectUri_maliciousRedirectUrlShouldResolveInAnExceptionWhenDetectingAttack(String allowedRedirectUrl, String incomingMaliciousRedirectUrl) {
+        final String fallbackRedirectUrl = "http://fallback.to/this";
+        Set<String> allowedRedirectUrlGlobPatterns = Collections.singleton(allowedRedirectUrl);
+
+        assertEquals(fallbackRedirectUrl, UaaUrlUtils.findMatchingRedirectUri(
+                allowedRedirectUrlGlobPatterns,
+                incomingMaliciousRedirectUrl,
+                fallbackRedirectUrl
+        ));
     }
 
     @Test

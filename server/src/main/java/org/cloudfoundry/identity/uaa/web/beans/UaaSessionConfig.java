@@ -33,6 +33,7 @@ public class UaaSessionConfig {
     ) {
         DefaultCookieSerializer cookieSerializer = new DefaultCookieSerializer();
         cookieSerializer.setSameSite("None");
+        cookieSerializer.setUseSecureCookie(true);
         cookieSerializer.setCookieMaxAge(cookieMaxAge);
         cookieSerializer.setCookieName("JSESSIONID");
 

@@ -138,7 +138,7 @@ public class LoginIT {
             if (cookie.contains("JSESSIONID")) {
                 jsessionIdValidated = true;
                 assertTrue(cookie.contains("HttpOnly"));
-                assertFalse(cookie.contains("Secure"));
+                assertTrue(cookie.contains("Secure"));
 
             }
         }

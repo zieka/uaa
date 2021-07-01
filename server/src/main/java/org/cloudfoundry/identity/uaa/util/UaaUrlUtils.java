@@ -13,10 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import static java.util.Collections.emptyList;
@@ -97,12 +94,27 @@ public abstract class UaaUrlUtils {
         AntPathMatcher matcher = new AntPathMatcher();
 
         for (String pattern : ofNullable(redirectUris).orElse(emptyList())) {
-            if (matcher.match(pattern, requestedRedirectUri)) {
+            if (matcher.match(pattern, requestedRedirectUri) && matchHost(pattern, requestedRedirectUri, matcher)) {
                 return requestedRedirectUri;
             }
         }
 
         return ofNullable(fallbackRedirectUri).orElse(requestedRedirectUri);
+    }
+
+    static boolean matchHost(String pattern, String requestedRedirectUri, AntPathMatcher matcher) {
+        String hostnameFromRequestedUri = getHostForURI(requestedRedirectUri);
+        StringTokenizer st = new StringTokenizer(pattern, "/");
+        String hostnameFromPattern = null;
+        while (st.hasMoreTokens()) {
+            String currentToken = st.nextToken();
+            if (currentToken.endsWith(":")) {
+                continue;
+            }
+            hostnameFromPattern = currentToken;
+            break;
+        }
+        return matcher.match(hostnameFromPattern, hostnameFromRequestedUri);
     }
 
     public static String getHostForURI(String uri) {

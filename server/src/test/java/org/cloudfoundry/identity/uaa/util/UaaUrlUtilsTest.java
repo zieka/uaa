@@ -345,6 +345,7 @@ class UaaUrlUtilsTest {
             "http://example.com/*, http://example.com/page#1",
             "http://example.com/**/mypage*, http://example.com/a/b/mypage?a=b",
             "http://abc?.example.com, http://abcd.example.com",
+            "http://www.*.example.com, http://www.tv.example.com"
     })
     void findMatchingRedirectUri_urlParametersShouldResolveInIncomingUrl(
             String allowedRedirectUrl,
@@ -364,7 +365,9 @@ class UaaUrlUtilsTest {
             "http://*.example.com, http://attacker.com?.example.com",
             "http://*.example.com, http://attacker.com\\.example.com",
             "http://*.example.com, http://attacker.com/.example.com",
-            "http://*.example.com, http://attacker.com#.example.com"
+            "http://*.example.com, http://attacker.com#.example.com",
+            "http://example.com, http://tv.example.com",
+            "http://www.*.example.com, http://www.attacker.com?.example.com"
     })
     void findMatchingRedirectUri_maliciousRedirectUrlShouldResolveInFallbackUrl(
             String allowedRedirectUrl,

@@ -342,7 +342,9 @@ class UaaUrlUtilsTest {
     @ParameterizedTest
     @CsvSource({
             "http://example.com/*, http://example.com/?param=value",
-            "http://example.com/*, http://example.com/page#1"
+            "http://example.com/*, http://example.com/page#1",
+            "http://example.com/**/mypage*, http://example.com/a/b/mypage?a=b",
+            "http://abc?.example.com, http://abcd.example.com",
     })
     void findMatchingRedirectUri_urlParametersShouldResolveInIncomingUrl(
             String allowedRedirectUrl,

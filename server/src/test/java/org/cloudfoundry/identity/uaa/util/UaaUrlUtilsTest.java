@@ -349,6 +349,7 @@ class UaaUrlUtilsTest {
             "a/**, a/b/c",
             "a/b/*, a/b/c",
             "ab?/*, abc/def",
+            "/abc/*, /abc/ab",
             "http://foo.bar.com:8080, http://foo.bar.com:8080",
             "http://foo.bar.com:8080/**, http://foo.bar.com:8080/app/foo",
             "http://*.bar.com:8080/**, http://foo.bar.com:8080/app/foo",
@@ -379,6 +380,7 @@ class UaaUrlUtilsTest {
             "a/b/*, a/b/c/d",
             "ab?/*, abcd/ef",
             "a/*, ",
+            "/abc/*, a/abc/ab",
             "http://*.bar.com:8080, http://attacker.com?.bar.com:8080",
             "http://*.bar.com:8080/**, http://attacker.com#foo.bar.com:8080/app/foo"
     })

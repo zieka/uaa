@@ -99,7 +99,7 @@ public abstract class UaaUrlUtils {
 
         for (String pattern : ofNullable(redirectUris).orElse(emptyList())) {
             if (matcher.match(pattern, requestedRedirectUri)) {
-                if (matchHost(pattern, requestedRedirectUri, matcher)) {
+                if ( (!pattern.contains("*") && !pattern.contains("?")) || matchHost(pattern, requestedRedirectUri, matcher)) {
                     return requestedRedirectUri;
                 }
                 else {

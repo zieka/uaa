@@ -348,7 +348,11 @@ class UaaUrlUtilsTest {
             "http://www.*.example.com, http://www.tv.example.com",
             "a/**, a/b/c",
             "a/b/*, a/b/c",
-            "ab?/*, abc/def"
+            "ab?/*, abc/def",
+            "http://foo.bar.com:8080, http://foo.bar.com:8080",
+            "http://foo.bar.com:8080/**, http://foo.bar.com:8080/app/foo",
+            "http://*.bar.com:8080/**, http://foo.bar.com:8080/app/foo",
+            "http://*.bar.com*, http://foo.bar.com:80"
     })
     void findMatchingRedirectUri_urlParametersShouldResolveInIncomingUrl(
             String allowedRedirectUrl,
@@ -374,7 +378,9 @@ class UaaUrlUtilsTest {
             "a/**/c, a/b/c/d",
             "a/b/*, a/b/c/d",
             "ab?/*, abcd/ef",
-            "a/*, "
+            "a/*, ",
+            "http://*.bar.com:8080, http://attacker.com?.bar.com:8080",
+            "http://*.bar.com:8080/**, http://attacker.com#foo.bar.com:8080/app/foo"
     })
     void findMatchingRedirectUri_badRedirectUrlShouldResolveInFallbackUrl(
             String allowedRedirectUrl,

@@ -141,6 +141,12 @@ public abstract class UaaUrlUtils {
             hostnameFromPattern = currentToken;
             break;
         }
+
+        int colonLocation = hostnameFromPattern.indexOf(':');
+        if (colonLocation > 0) {
+            hostnameFromPattern = hostnameFromPattern.substring(0, colonLocation);
+        }
+
         return hostnameFromPattern != null &&
                 matcher.match(hostnameFromPattern, hostnameFromRequestedUri);
     }

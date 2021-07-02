@@ -14,6 +14,7 @@ import org.springframework.web.util.UriUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -117,11 +118,17 @@ public abstract class UaaUrlUtils {
      * <code>requestedUri</code>, then do Ant path match of the hostname parts.
      */
     static boolean matchHost(String uriPattern, String requestedUri, AntPathMatcher matcher) {
-        String hostnameFromRequestedUri = getHostForURI(requestedUri);
-        int backSlashLocation = hostnameFromRequestedUri.indexOf('\\');
-        if (backSlashLocation >= 0) {
-            hostnameFromRequestedUri = hostnameFromRequestedUri.substring(0,
-                    backSlashLocation);
+        requestedUri = requestedUri.replace('\\', '/');
+        String hostnameFromRequestedUri;
+        try {
+            hostnameFromRequestedUri = new URI(requestedUri).getHost();
+        }
+        catch (URISyntaxException ex) {
+            return false;
+        }
+        if (hostnameFromRequestedUri == null) {
+            // No URI scheme, likely relative URI, so just return true
+            return true;
         }
 
         StringTokenizer st = new StringTokenizer(uriPattern, "/");

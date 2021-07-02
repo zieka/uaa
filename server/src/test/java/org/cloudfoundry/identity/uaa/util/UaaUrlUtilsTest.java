@@ -369,7 +369,7 @@ class UaaUrlUtilsTest {
             "http://example.com, http://tv.example.com",
             "http://www.*.example.com, http://www.attacker.com?.example.com"
     })
-    void findMatchingRedirectUri_maliciousRedirectUrlShouldResolveInFallbackUrl(
+    void findMatchingRedirectUri_badRedirectUrlShouldResolveInFallbackUrl(
             String allowedRedirectUrl,
             String incomingMaliciousRedirectUrl) {
         final String fallbackRedirectUrl = "http://fallback.to/this";

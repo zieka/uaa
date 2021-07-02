@@ -141,14 +141,14 @@ public abstract class UaaUrlUtils {
             hostnameFromPattern = currentToken;
             break;
         }
+        if (hostnameFromPattern == null) return false;
 
         int colonLocation = hostnameFromPattern.indexOf(':');
         if (colonLocation > 0) {
             hostnameFromPattern = hostnameFromPattern.substring(0, colonLocation);
         }
 
-        return hostnameFromPattern != null &&
-                matcher.match(hostnameFromPattern, hostnameFromRequestedUri);
+        return matcher.match(hostnameFromPattern, hostnameFromRequestedUri);
     }
 
     public static String getHostForURI(String uri) {

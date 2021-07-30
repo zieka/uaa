@@ -123,7 +123,7 @@ class IdentityZoneEndpointDocs extends EndpointDocs {
     private static final String SECRET_POLICY_EXPIRE_MONTHS = "Number of months after which current secret expires (defaults to 0).";
 
     private static final String SERVICE_PROVIDER_KEY =
-            "-----BEGIN RSA PRIVATE KEY-----\n" +
+            /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                     "MIIBOwIBAAJBAJv8ZpB5hEK7qxP9K3v43hUS5fGT4waKe7ix4Z4mu5UBv+cw7WSF\n" +
                     "At0Vaag0sAbsPzU8Hhsrj/qPABvfB8asUwcCAwEAAQJAG0r3ezH35WFG1tGGaUOr\n" +
                     "QA61cyaII53ZdgCR1IU8bx7AUevmkFtBf+aqMWusWVOWJvGu2r5VpHVAIl8nF6DS\n" +

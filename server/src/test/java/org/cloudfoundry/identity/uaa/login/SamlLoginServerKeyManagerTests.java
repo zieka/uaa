@@ -25,7 +25,7 @@ import static org.junit.Assert.assertNotNull;
 public class SamlLoginServerKeyManagerTests {
 
     private KeyManager keyManager = null;
-    public static final String KEY = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    public static final String KEY = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "Proc-Type: 4,ENCRYPTED\n" +
             "DEK-Info: DES-EDE3-CBC,5771044F3450A262\n" +
             "\n" +
@@ -78,7 +78,7 @@ public class SamlLoginServerKeyManagerTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void testWithWorkingCertificateInvalidPassword() {
-        String key = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String key = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                         "Proc-Type: 4,ENCRYPTED\n" +
                         "DEK-Info: DES-EDE3-CBC,5771044F3450A262\n" +
                         "\n" +
@@ -128,7 +128,7 @@ public class SamlLoginServerKeyManagerTests {
 
     @Test
     public void testWithWorkingCertificateNullPassword() {
-        String key = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String key = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "MIICXgIBAAKBgQDfTLadf6QgJeS2XXImEHMsa+1O7MmIt44xaL77N2K+J/JGpfV3\n" +
             "AnkyB06wFZ02sBLB7hko42LIsVEOyTuUBird/3vlyHFKytG7UEt60Fl88SbAEfsU\n" +
             "JN1i1aSUlunPS/NCz+BKwwKFP9Ss3rNImE9Uc2LMvGy153LHFVW2zrjhTwIDAQAB\n" +
@@ -183,7 +183,7 @@ public class SamlLoginServerKeyManagerTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void testWithWorkingCertificateIllegalKey() {
-        String key = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String key = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                         "Proc-Type: 4,ENCRYPTED\n" +
                         "DEK-Info: DES-EDE3-CBC,5771044F3450A262\n" +
                         "\n" +
@@ -224,7 +224,7 @@ public class SamlLoginServerKeyManagerTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void testWithNonWorkingCertificate() {
-        String key = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String key = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                         "Proc-Type: 4,ENCRYPTED\n" +
                         "DEK-Info: DES-EDE3-CBC,5771044F3450A262\n" +
                         "\n" +
@@ -275,7 +275,7 @@ public class SamlLoginServerKeyManagerTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void testKeyPairValidated() {
-        String key = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String key = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "Proc-Type: 4,ENCRYPTED\n" +
             "DEK-Info: DES-EDE3-CBC,5771044F3450A262\n" +
             "\n" +

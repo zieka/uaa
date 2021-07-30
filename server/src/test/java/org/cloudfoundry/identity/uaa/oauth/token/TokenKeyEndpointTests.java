@@ -49,7 +49,7 @@ class TokenKeyEndpointTests {
 
     private TokenKeyEndpoint tokenKeyEndpoint = new TokenKeyEndpoint(new KeyInfoService("https://localhost.uaa"));
     private Authentication validUaaResource;
-    private final String SIGNING_KEY_1 = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private final String SIGNING_KEY_1 = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
       "MIIBOQIBAAJAcPh8sj6TdTGYUTAn7ywyqNuzPD8pNtmSFVm87yCIhKDdIdEQ+g8H\n" +
       "xq8zBWtMN9uaxyEomLXycgTbnduW6YOpyQIDAQABAkAE2qiBAC9V2cuxsWAF5uBG\n" +
       "YSpSbGRY9wBP6oszuzIigLgWwxYwqGSS/Euovn1/BZEQL1JLc8tRp+Zn34JfLrAB\n" +
@@ -58,7 +58,7 @@ class TokenKeyEndpointTests {
       "nxH5usX+uyfxAiA0l7olWyEYRD10DDFmINs6auuXMUrskBDz0e8lWXqV6QIgJSkM\n" +
       "L5WgVmzexrNmKxmGQQhNzfgO0Lk7o+iNNZXbkxw=\n" +
       "-----END RSA PRIVATE KEY-----";
-    private final String SIGNING_KEY_2 = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private final String SIGNING_KEY_2 = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
       "MIIBOQIBAAJBAKIuxhxq0SyeITbTw3SeyHz91eB6xEwRn9PPgl+klu4DRUmVs0h+\n" +
       "UlVjXSTLiJ3r1bJXVded4JzVvNSh5Nw+7zsCAwEAAQJAYeVH8klL39nHhLfIiHF7\n" +
       "5W63FhwktyIATrM4KBFKhXn8i29l76qVqX88LAYpeULric8fGgNoSaYVsHWIOgDu\n" +
@@ -67,7 +67,7 @@ class TokenKeyEndpointTests {
       "H20/OhqZ3/IHAiBSn3/31am8zW+l7UM+Fkc29aij+KDsYQfmmvriSp3/2QIgFtiE\n" +
       "Jkd0KaxkobLdyDrW13QnEaG5TXO0Y85kfu3nP5o=\n" +
       "-----END RSA PRIVATE KEY-----";
-    private final String SIGNING_KEY_3 = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private final String SIGNING_KEY_3 = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
       "MIIBOgIBAAJBAOnndOyLh8axLMyjX+gCglBCeU5Cumjxz9asho5UvO8zf03PWciZ\n" +
       "DGWce+B+n23E1IXbRKHWckCY0UH7fEgbrKkCAwEAAQJAGR9aCJoH8EhRVn1prKKw\n" +
       "Wmx5WPWDzgfC2fzXyuvBCzPZNMQqOxWT9ajr+VysuyFZbz+HGJDqpf9Jl+fcIIUJ\n" +

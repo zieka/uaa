@@ -132,7 +132,7 @@ public class CheckTokenEndpointTests {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {
-                        "-----BEGIN RSA PRIVATE KEY-----\n" +
+                        /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                                 "MIIEowIBAAKCAQEA0m59l2u9iDnMbrXHfqkOrn2dVQ3vfBJqcDuFUK03d+1PZGbV\n" +
                                 "lNCqnkpIJ8syFppW8ljnWweP7+LiWpRoz0I7fYb3d8TjhV86Y997Fl4DBrxgM6KT\n" +
                                 "JOuE/uxnoDhZQ14LgOU2ckXjOzOdTsnGMKQBLCl0vpcXBtFLMaSbpv1ozi8h7DJy\n" +
@@ -166,7 +166,7 @@ public class CheckTokenEndpointTests {
         });
     }
 
-    private String alternateSignerKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private String alternateSignerKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "MIIEowIBAAKCAQEAsLZaEu+98J6neClnaCBy82xg9/DdVgLuO4fr0X9N/nmzaJ1L\n" +
             "vBmhBdRA8zCLMHQXQmNko7vAZa2/L+A1zQL110puyB4YeInE5lJmGuAADVE2s2ep\n" +
             "dritrHKVVVv2eCucKRMbQSbhXG2YX0QLp0T4z35Mw3Pa2Q1EDKVinL0o6deW4cX6\n" +
@@ -679,7 +679,7 @@ public class CheckTokenEndpointTests {
 
         try {
             zone.getConfig().getTokenPolicy().setKeys(Collections.singletonMap("testKey",
-                    "-----BEGIN RSA PRIVATE KEY-----\n" +
+                    /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                             "MIIBOgIBAAJAcEJMJ3ZT4GgdxipJe4uXvRQFfSpOneGjHfFTLjECMd0OkNtIWoIU\n" +
                             "8OisQRmhBDdXk2owne2SGJcqsVN/pd9pMQIDAQABAkAV/KY1xHNBLKNIQNgLnpel\n" +
                             "rNo2XabwPVVZc/66uVaYtVSwQjOxlo7mIzp77dpiM6o0kT4v3/9eyfKZte4uB/pR\n" +
@@ -702,7 +702,7 @@ public class CheckTokenEndpointTests {
 
         try {
             zone.getConfig().getTokenPolicy().setKeys(Collections.singletonMap("zoneKey",
-                    "-----BEGIN RSA PRIVATE KEY-----\n" +
+                    /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                             "MIIBOgIBAAJAcEJMJ3ZT4GgdxipJe4uXvRQFfSpOneGjHfFTLjECMd0OkNtIWoIU\n" +
                             "8OisQRmhBDdXk2owne2SGJcqsVN/pd9pMQIDAQABAkAV/KY1xHNBLKNIQNgLnpel\n" +
                             "rNo2XabwPVVZc/66uVaYtVSwQjOxlo7mIzp77dpiM6o0kT4v3/9eyfKZte4uB/pR\n" +
@@ -724,7 +724,7 @@ public class CheckTokenEndpointTests {
     @Test
     public void testZoneValidatesTokenSignedWithInactiveKey() throws Exception {
         HashMap<String, String> keys = new HashMap<>();
-        keys.put("oldKey", "-----BEGIN RSA PRIVATE KEY-----\n" +
+        keys.put("oldKey", /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                 "MIIBOgIBAAJAcEJMJ3ZT4GgdxipJe4uXvRQFfSpOneGjHfFTLjECMd0OkNtIWoIU\n" +
                 "8OisQRmhBDdXk2owne2SGJcqsVN/pd9pMQIDAQABAkAV/KY1xHNBLKNIQNgLnpel\n" +
                 "rNo2XabwPVVZc/66uVaYtVSwQjOxlo7mIzp77dpiM6o0kT4v3/9eyfKZte4uB/pR\n" +
@@ -748,7 +748,7 @@ public class CheckTokenEndpointTests {
     public void testZoneValidatesTokenSignedWithRemovedKey() throws Exception {
         try {
             HashMap<String, String> keys = new HashMap<>();
-            keys.put("oldKey", "-----BEGIN RSA PRIVATE KEY-----\n" +
+            keys.put("oldKey", /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                     "MIIBOgIBAAJAcEJMJ3ZT4GgdxipJe4uXvRQFfSpOneGjHfFTLjECMd0OkNtIWoIU\n" +
                     "8OisQRmhBDdXk2owne2SGJcqsVN/pd9pMQIDAQABAkAV/KY1xHNBLKNIQNgLnpel\n" +
                     "rNo2XabwPVVZc/66uVaYtVSwQjOxlo7mIzp77dpiM6o0kT4v3/9eyfKZte4uB/pR\n" +
@@ -777,7 +777,7 @@ public class CheckTokenEndpointTests {
     @Test(expected = InvalidTokenException.class)
     public void testDefaultZoneRejectsTokenSignedWithOtherZoneKey() throws Exception {
         zone.getConfig().getTokenPolicy().setKeys(Collections.singletonMap("zoneKey",
-                "-----BEGIN RSA PRIVATE KEY-----\n" +
+                /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                         "MIIBOgIBAAJAcEJMJ3ZT4GgdxipJe4uXvRQFfSpOneGjHfFTLjECMd0OkNtIWoIU\n" +
                         "8OisQRmhBDdXk2owne2SGJcqsVN/pd9pMQIDAQABAkAV/KY1xHNBLKNIQNgLnpel\n" +
                         "rNo2XabwPVVZc/66uVaYtVSwQjOxlo7mIzp77dpiM6o0kT4v3/9eyfKZte4uB/pR\n" +

@@ -27,7 +27,7 @@ public class CommonSignerTest {
 
     @Before
     public void setup() {
-        rsaSigningKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        rsaSigningKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "MIIBOQIBAAJAcjAgsHEfrUxeTFwQPb17AkZ2Im4SfZdpY8Ada9pZfxXz1PZSqv9T\n" +
             "PTMAzNx+EkzMk2IMYN+uNm1bfDzaxVdz+QIDAQABAkBoR39y4rw0/QsY3PKQD5xo\n" +
             "hYSZCMCmJUI/sFCuECevIFY4h6q9KBP+4Set96f7Bgs9wJWVvCMx/nJ6guHAjsIB\n" +

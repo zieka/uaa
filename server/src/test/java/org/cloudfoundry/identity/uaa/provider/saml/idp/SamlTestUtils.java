@@ -60,7 +60,7 @@ import static org.opensaml.common.xml.SAMLConstants.SAML20P_NS;
 
 public class SamlTestUtils {
 
-    public static final String PROVIDER_PRIVATE_KEY = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    public static final String PROVIDER_PRIVATE_KEY = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "MIICXQIBAAKBgQDHtC5gUXxBKpEqZTLkNvFwNGnNIkggNOwOQVNbpO0WVHIivig5\n" +
             "L39WqS9u0hnA+O7MCA/KlrAR4bXaeVVhwfUPYBKIpaaTWFQR5cTR1UFZJL/OF9vA\n" +
             "fpOwznoD66DDCnQVpbCjtDYWX+x6imxn8HCYxhMol6ZnTbSsFW6VZjFMjQIDAQAB\n" +

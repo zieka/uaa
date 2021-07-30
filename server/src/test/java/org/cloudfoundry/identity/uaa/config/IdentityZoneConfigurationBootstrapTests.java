@@ -47,7 +47,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class IdentityZoneConfigurationBootstrapTests {
 
     public static final String PRIVATE_KEY =
-            "-----BEGIN RSA PRIVATE KEY-----\n" +
+            /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                     "MIICXAIBAAKBgQDErZsZY70QAa7WdDD6eOv3RLBA4I5J0zZOiXMzoFB5yh64q0sm\n" +
                     "ESNtV4payOYE5TnHxWjMo0y7gDsGjI1omAG6wgfyp63I9WcLX7FDLyee43fG5+b9\n" +
                     "roofosL+OzJSXESSulsT9Y1XxSFFM5RMu4Ie9uM4/izKLCsAKiggMhnAmQIDAQAB\n" +

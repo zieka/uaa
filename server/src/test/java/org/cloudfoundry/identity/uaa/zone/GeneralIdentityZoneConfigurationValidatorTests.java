@@ -51,7 +51,7 @@ public class GeneralIdentityZoneConfigurationValidatorTests {
         this.mode = mode;
     }
 
-    private String legacyKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private String legacyKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
         "MIICXQIBAAKBgQDHtC5gUXxBKpEqZTLkNvFwNGnNIkggNOwOQVNbpO0WVHIivig5\n" +
         "L39WqS9u0hnA+O7MCA/KlrAR4bXaeVVhwfUPYBKIpaaTWFQR5cTR1UFZJL/OF9vA\n" +
         "fpOwznoD66DDCnQVpbCjtDYWX+x6imxn8HCYxhMol6ZnTbSsFW6VZjFMjQIDAQAB\n" +
@@ -88,7 +88,7 @@ public class GeneralIdentityZoneConfigurationValidatorTests {
         "RpuRBwn3Ei+jCRouxTbzKPsuCVB+1sNyxMTXzf0=\n" +
         "-----END CERTIFICATE-----";
 
-    private String key1 = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private String key1 = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
         "MIIEogIBAAKCAQEArRkvkddLUoNyuvu0ktkcLL0CyGG8Drh9oPsaVOLVHJqB1Ebr\n" +
         "oNMTPbY0HPjuD5WBDZTi3ftNLp1mPn9wFy6FhMTvIYeQmTskH8m/kyVReXG/zfWq\n" +
         "a4+V6UW4nmUcvfF3YNrHvN5VPTWTJrc2KBzseWQ70OaBNfBi6z4XbdOF45dDfck2\n" +
@@ -140,7 +140,7 @@ public class GeneralIdentityZoneConfigurationValidatorTests {
         "ynuP3shhqhFvaaiUTZP4l5yF/GQ=\n" +
         "-----END CERTIFICATE-----";
 
-    private String key2 = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private String key2 = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
         "MIIEpAIBAAKCAQEAwt7buITRZhXX98apcgJbiHhrPkrgn5MCsCphRQ89oWPUHWjN\n" +
         "j9Kz2m9LaKgq9DnNLl22U4e6/LUQToBCLxkIqwaobZKjIUjNAmNomqbNO7AD2+K7\n" +
         "RCiQ2qijWUwXGu+5+fSmF/MOermNKUDiQnRJSSSAPObAHOI980zTWVsApKpcFVaV\n" +

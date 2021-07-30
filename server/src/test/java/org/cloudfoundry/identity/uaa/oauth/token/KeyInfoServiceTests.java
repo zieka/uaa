@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(PollutionPreventionExtension.class)
 class KeyInfoServiceTests {
-    private static final String SIGNING_KEY = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private static final String SIGNING_KEY = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
       "MIICXAIBAAKBgQDErZsZY70QAa7WdDD6eOv3RLBA4I5J0zZOiXMzoFB5yh64q0sm\n" +
       "ESNtV4payOYE5TnHxWjMo0y7gDsGjI1omAG6wgfyp63I9WcLX7FDLyee43fG5+b9\n" +
       "roofosL+OzJSXESSulsT9Y1XxSFFM5RMu4Ie9uM4/izKLCsAKiggMhnAmQIDAQAB\n" +
@@ -71,7 +71,7 @@ class KeyInfoServiceTests {
 
     @Test
     void testSignedProviderAsymmetricKeys() {
-        String signingKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String signingKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                 "MIICXAIBAAKBgQDErZsZY70QAa7WdDD6eOv3RLBA4I5J0zZOiXMzoFB5yh64q0sm\n" +
                 "ESNtV4payOYE5TnHxWjMo0y7gDsGjI1omAG6wgfyp63I9WcLX7FDLyee43fG5+b9\n" +
                 "roofosL+OzJSXESSulsT9Y1XxSFFM5RMu4Ie9uM4/izKLCsAKiggMhnAmQIDAQAB\n" +

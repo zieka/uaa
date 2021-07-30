@@ -42,7 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DefaultTestContext
 class TokenKeyEndpointMockMvcTests {
 
-    private static final String signKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private static final String signKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
       "MIIEpQIBAAKCAQEA5JgjYNjLOeWC1Xf/NFcremS9peiQd3esa64KZ0BJue74bEtp\n" +
       "N8CLmbeTD9NHvKzCg833cF81gkrkP/pkra7WZF+zNlHBDnO68D/tBkEAzPJYlFLL\n" +
       "bMgvgL90fLbev4tlEUD59e0QGJQjIrcieOJSoOBSc8SqhVN61pdzT3rTUx+pq+QP\n" +

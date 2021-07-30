@@ -56,7 +56,7 @@ public class ChainedSignatureVerifierTests {
 
     @Before
     public void setup() {
-        rsaSigningKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        rsaSigningKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
           "MIIBOQIBAAJAcjAgsHEfrUxeTFwQPb17AkZ2Im4SfZdpY8Ada9pZfxXz1PZSqv9T\n" +
           "PTMAzNx+EkzMk2IMYN+uNm1bfDzaxVdz+QIDAQABAkBoR39y4rw0/QsY3PKQD5xo\n" +
           "hYSZCMCmJUI/sFCuECevIFY4h6q9KBP+4Set96f7Bgs9wJWVvCMx/nJ6guHAjsIB\n" +
@@ -66,7 +66,7 @@ public class ChainedSignatureVerifierTests {
           "2JGEulMY3bK1PVGYmtsXF1gq6zbRMoollMCRSMg=\n" +
           "-----END RSA PRIVATE KEY-----";
 
-        invalidRsaSigningKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        invalidRsaSigningKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
           "MIIBOgIBAAJBAJnlBG4lLmUiHslsKDODfd0MqmGZRNUOhn7eO3cKobsFljUKzRQe\n" +
           "GB7LYMjPavnKccm6+jWSXutpzfAc9A9wXG8CAwEAAQJADwwdiseH6cuURw2UQLUy\n" +
           "sVJztmdOG6b375+7IMChX6/cgoF0roCPP0Xr70y1J4TXvFhjcwTgm4RI+AUiIDKw\n" +

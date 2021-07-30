@@ -29,7 +29,7 @@ public class KeyWithCertTest {
         Security.addProvider(new BouncyCastleProvider());
     }
 
-    public static final String key = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    public static final String key = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
         "MIICXgIBAAKBgQDfTLadf6QgJeS2XXImEHMsa+1O7MmIt44xaL77N2K+J/JGpfV3\n" +
         "AnkyB06wFZ02sBLB7hko42LIsVEOyTuUBird/3vlyHFKytG7UEt60Fl88SbAEfsU\n" +
         "JN1i1aSUlunPS/NCz+BKwwKFP9Ss3rNImE9Uc2LMvGy153LHFVW2zrjhTwIDAQAB\n" +
@@ -73,7 +73,7 @@ public class KeyWithCertTest {
 
     public static final String password = "password";
 
-    public static final String encryptedKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    public static final String encryptedKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
         "Proc-Type: 4,ENCRYPTED\n" +
         "DEK-Info: DES-EDE3-CBC,BE03AC562D734AB1\n" +
         "mvMS20ddwCJ6A+ABJKWViGTgLpWUVA5ZqKYU6Q3N+le769s4uygcMOtvTcjgH46E\n" +

@@ -81,7 +81,7 @@ import static org.springframework.util.StringUtils.hasText;
 @DefaultTestContext
 class IdentityZoneEndpointsMockMvcTests {
     private final String serviceProviderKey =
-            "-----BEGIN RSA PRIVATE KEY-----\n" +
+            /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                     "MIICXQIBAAKBgQDHtC5gUXxBKpEqZTLkNvFwNGnNIkggNOwOQVNbpO0WVHIivig5\n" +
                     "L39WqS9u0hnA+O7MCA/KlrAR4bXaeVVhwfUPYBKIpaaTWFQR5cTR1UFZJL/OF9vA\n" +
                     "fpOwznoD66DDCnQVpbCjtDYWX+x6imxn8HCYxhMol6ZnTbSsFW6VZjFMjQIDAQAB\n" +
@@ -642,7 +642,7 @@ class IdentityZoneEndpointsMockMvcTests {
 
         IdentityZone created = createZone(id, HttpStatus.CREATED, identityClientToken, new IdentityZoneConfiguration());
 
-        String samlPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String samlPrivateKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                 "Proc-Type: 4,ENCRYPTED\n" +
                 "DEK-Info: DES-EDE3-CBC,5771044F3450A262\n" +
                 "\n" +
@@ -830,7 +830,7 @@ class IdentityZoneEndpointsMockMvcTests {
 
         SamlConfig samlConfig = new SamlConfig();
 
-        String samlPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String samlPrivateKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                 "MIICXAIBAAKBgQCpnqPQiDCfJY1hVaQUZG6Rs1Wd3FmP1EStN71hXeXOLog5nvpa\n" +
                 "H45P3v79EGpaO06vH5qSu/xr6kQRBOA4h9OqXGS72BGQBH8jMNCoHqgJrIADQTHX\n" +
                 "H85RYF38bH6Ycp18jch0KVmYwKeiaLNfMDngnAv6wMDONJz761GBtrG1/wIDAQAB\n" +
@@ -1468,7 +1468,7 @@ class IdentityZoneEndpointsMockMvcTests {
 
         SamlConfig samlConfig = new SamlConfig();
 
-        String samlPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+        String samlPrivateKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
                 "Proc-Type: 4,ENCRYPTED\n" +
                 "DEK-Info: DES-EDE3-CBC,5771044F3450A262\n" +
                 "\n" +

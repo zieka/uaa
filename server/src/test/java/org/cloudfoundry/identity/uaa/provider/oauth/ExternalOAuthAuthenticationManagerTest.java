@@ -42,7 +42,7 @@ public class ExternalOAuthAuthenticationManagerTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    private String uaaIdentityZoneTokenSigningKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private String uaaIdentityZoneTokenSigningKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "MIICXgIBAAKBgQDR94jLH/fHUjdMzFCajcD8E/RUWcSOPPj5mSnIM1427q0hScP9\n" +
             "yw5kifK4unqi/urO6t4IPXVN304tm8E0Um/nw3t4NAxd7aCwc0fu6wnXIlb+aZeP\n" +
             "TW14Qo8FlYqyMGu1XhKIHplPzTbSEeZsxv9cSfJHPwxhaLsiGKYRfslO4QIDAQAB\n" +
@@ -58,7 +58,7 @@ public class ExternalOAuthAuthenticationManagerTest {
             "rHnyY28TwVjI/PpZgWXNdOeD4MrQuyjvr+n+5d7CCU8tYQ==\n" +
             "-----END RSA PRIVATE KEY-----";
 
-    private String oidcProviderTokenSigningKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private String oidcProviderTokenSigningKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "MIICXQIBAAKBgQC7FTvb+tIJN91iu2CFWXR9xCfPyyqalhCA5glhPdYNRbOPSE66\n" +
             "uLLIiovjhe+QOc9mMalK+pGc5FXRo1MECy38/mfVeOGiHtqcGfO6cxJ4B3IapQM2\n" +
             "wATWF8f6CtZqCgnXDK/noQHVcegDEf+FYrH1Tq7SWaYtE5gNmY7U7tVTwQIDAQAB\n" +
@@ -74,7 +74,7 @@ public class ExternalOAuthAuthenticationManagerTest {
             "PEw0pNKKUspeBvWwNMltYeRMw032ovZAmZewYQAqOB+a\n" +
             "-----END RSA PRIVATE KEY-----";
 
-    private String changedOidcProviderTokenSigningKey = "-----BEGIN RSA PRIVATE KEY-----\n" +
+    private String changedOidcProviderTokenSigningKey = /*~~>*/"-----BEGIN RSA PRIVATE KEY-----\n" +
             "MIICWwIBAAKBgQC1jt6DNm92RxO2/ZD2/QgPYTHmMk9FvCUTbBkIL4TQDDFwcuDn\n" +
             "Qz8ZbotvhNFwQe2vnHa641u9jEdm7xlL6U6WCNdJcoGIK274gFy82G7h7QcKxoJm\n" +
             "Dbu7G1c6NrX7EMxr2jhClRSji4w5JgI0tfSD2Q8onkr1xKOzqIFundRptQIDAQAB\n" +
